@@ -134,7 +134,7 @@ We implemented BDD approach
 @wip = work in progress
 
 
-- Different ways of generatin snippet:
+- Different ways of generating snippet:
 
 #1- Run the RunnerClass and generate the snippet in console
 #2- Hover over the unimplemented step --> Create step definition --> Select class where we want it
