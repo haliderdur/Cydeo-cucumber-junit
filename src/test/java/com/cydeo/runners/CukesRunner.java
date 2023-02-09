@@ -8,12 +8,13 @@ import org.junit.runner.RunWith;
 
 @RunWith(Cucumber.class)
 @CucumberOptions(
+        plugin = "html:target/cucumber-report.html",
         features = "src/test/resources/features", //feature file path
         glue = "com/cydeo/step_definitions", //step_definitions package path
         dryRun = false,
         // dryRun=true -->turn off the step_definitions - code will not run, check the missing snippet
         // dryRun=false --> turn on the step_definitions exectution - code will run as expected
-        tags = "@regression"
+        tags = ""
 
 )
 public class CukesRunner {
