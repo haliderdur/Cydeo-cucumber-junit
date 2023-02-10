@@ -2,6 +2,7 @@ package com.cydeo.step_definitions;
 
 import com.cydeo.utilities.Driver;
 import io.cucumber.java.en.And;
+import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 
@@ -44,4 +45,9 @@ public class LoginStepDefinitions {
         System.out.println("user enters valid admin password");
     }
 
+
+    @Given("user is already on login page")
+    public void userIsAlreadyOnLoginPage() {
+        System.out.println("user is already on login page");
+    }
 }
