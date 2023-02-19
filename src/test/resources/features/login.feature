@@ -7,7 +7,7 @@ Feature: Library app login feature
   Background: For the scenarios in the feature file, user is expected to be already on login page
     Given user is already on login page
 
-  @librarian @wip_halid
+  @librarian
   Scenario: Login as librarian
     When user enters valid librarian username
     And user enters valid librarian password
