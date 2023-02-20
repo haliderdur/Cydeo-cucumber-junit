@@ -13,6 +13,13 @@ Feature: Google search functionality
     When user types apple and clicks enter
     Then user sees apple in the title
 
+
+  Scenario: Search functionality result title verification
+    Given user is on the Google search page
+    And user accepts cookies
+    When user types apple and clicks enter
+    Then user sees apple in the title
+
   @wip
   Scenario: Search functionality result title verification
     Given user is on the Google search page
