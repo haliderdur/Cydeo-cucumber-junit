@@ -3,16 +3,16 @@ package com.cydeo.utilities;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 
 import java.util.concurrent.TimeUnit;
 
 public class Driver {
 
-    /*
-Creating a provate constructor so we can prevent
-access to the object of this class from outside of the class
- */
+
+    /*Creating a private constructor so we can prevent
+access to the object of this class from outside of the class */
     private Driver() {
     }
 
@@ -35,7 +35,7 @@ access to the object of this class from outside of the class
             String browserType = ConfigurationReader.getProperty("browser");
 
             /*
-            Depends on the browser type that will be return from configuration.properties file
+            Depends on the browser type that will be returned from configuration.properties file
             switch statement will determine the case, and open the matching browser
             */
             switch (browserType) {
@@ -49,6 +49,13 @@ access to the object of this class from outside of the class
                 case "firefox":
                     WebDriverManager.firefoxdriver().setup();
                     driver = new FirefoxDriver();
+                    driver.manage().window().maximize();
+                    driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+                    break;
+
+                case "edge":
+                    WebDriverManager.firefoxdriver().setup();
+                    driver = new EdgeDriver();
                     driver.manage().window().maximize();
                     driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
                     break;
