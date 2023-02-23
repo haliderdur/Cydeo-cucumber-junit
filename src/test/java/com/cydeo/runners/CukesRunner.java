@@ -11,7 +11,7 @@ import org.junit.runner.RunWith;
         plugin = "html:target/cucumber-report.html",
         features = "src/test/resources/features", //feature file path
         glue = "com/cydeo/step_definitions", // step_definitions path
-        dryRun = true,
+        dryRun = false,
         tags = "@wip"
 )
 

@@ -26,7 +26,7 @@ public class Order_StepDef {
     @Given("user is already logged in and on order page")
     public void user_is_already_logged_in_and_on_order_page() {
         //Getting the page using the URL from configuration.properties
-        Driver.getDriver().get(ConfigurationReader.getProperty("web.table.url"));
+        Driver.getDriver().get(ConfigurationReader.getProperty("webTableURL"));
 
         //Calling our login method to log in to web table app
         webTableLoginPage.login();
@@ -98,11 +98,11 @@ public class Order_StepDef {
     public void user_enters_expiry_date(String string) {
         orderPage.cardExpInput.sendKeys(string);
     }
-    @When("user enters process order button")
+    @When("user clicks process order button")
     public void user_enters_process_order_button() {
         orderPage.processOrderBtn.click();
     }
-    @Then("user should see {string} in first row of the web table")
+    @Then("user should see {string} in first row of web table")
     public void user_should_see_in_first_row_of_the_web_table(String expectedName) {
         String actualName = viewAllOrdersPage.newCustomerCell.getText();
 
