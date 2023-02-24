@@ -17,7 +17,7 @@ import org.junit.runner.RunWith;
         features = "src/test/resources/features", //feature file path
         glue = "com/cydeo/step_definitions", // step_definitions path
         dryRun = false,
-        tags = "@smoke"
+        tags = ""
 )
 
 public class CukesRunner {

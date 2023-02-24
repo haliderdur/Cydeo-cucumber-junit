@@ -20,14 +20,16 @@ access to the object of this class from outside of the class */
     We make WebDriver private, cuz we want to prevent access from outside of the class
     We make WebDriver static, cuz we will use it in a static method
      */
-    private static WebDriver driver;
+    // private static WebDriver driver;
+
+    private static InheritableThreadLocal<WebDriver> driverPool = new InheritableThreadLocal<>();
 
     /*
     Create a re-usable utility method which will return same driver instance when we call it
     */
     public static WebDriver getDriver() {
 
-        if (driver == null) {
+        if (driverPool.get() == null) {
             /*
             Read browser type from ConfigurationReader.properties
             This way, I can control which browser is opened from outside of my code
@@ -41,35 +43,35 @@ access to the object of this class from outside of the class */
             switch (browserType) {
                 case "chrome":
                     WebDriverManager.chromedriver().setup();
-                    driver = new ChromeDriver();
-                    driver.manage().window().maximize();
-                    driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+                    driverPool.set(new ChromeDriver());
+                    driverPool.get().manage().window().maximize();
+                    driverPool.get().manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
                     break;
 
                 case "firefox":
                     WebDriverManager.firefoxdriver().setup();
-                    driver = new FirefoxDriver();
-                    driver.manage().window().maximize();
-                    driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+                    driverPool.set(new FirefoxDriver());
+                    driverPool.get().manage().window().maximize();
+                    driverPool.get().manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
                     break;
 
                 case "edge":
                     WebDriverManager.firefoxdriver().setup();
-                    driver = new EdgeDriver();
-                    driver.manage().window().maximize();
-                    driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+                    driverPool.set(new EdgeDriver());
+                    driverPool.get().manage().window().maximize();
+                    driverPool.get().manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
                     break;
             }
         }
-        return driver;
+        return driverPool.get();
     }
 
 
     // closeDriver() method will make sure that the driver value is always null after using quit() method
     public static void closeDriver() {
-        if (driver != null) {
-            driver.quit(); // this will terminate the existing session. value will not be even null
-            driver = null;
+        if (driverPool.get() != null) {
+            driverPool.get().quit(); // this will terminate the existing session. value will not be even null
+            driverPool.remove();
         }
     }
 
